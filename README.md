@@ -1,34 +1,32 @@
-# [TypeScript Example](https://www.typescriptlang.org/)
+<h1 align='center'> PLANT MANAGER </h1>
 
-<p>
-  <!-- iOS -->
-  <img alt="Supports Expo iOS" longdesc="Supports Expo iOS" src="https://img.shields.io/badge/iOS-4630EB.svg?style=flat-square&logo=APPLE&labelColor=999999&logoColor=fff" />
-  <!-- Android -->
-  <img alt="Supports Expo Android" longdesc="Supports Expo Android" src="https://img.shields.io/badge/Android-4630EB.svg?style=flat-square&logo=ANDROID&labelColor=A4C639&logoColor=fff" />
-  <!-- Web -->
-  <img alt="Supports Expo Web" longdesc="Supports Expo Web" src="https://img.shields.io/badge/web-4630EB.svg?style=flat-square&logo=GOOGLE-CHROME&labelColor=4285F4&logoColor=fff" />
+### Plantmanager made with react native ⚡️
+
+## ScreenShots
+
+<p align='center'>
+<img src='' width='240' />
+
 </p>
 
-```sh
-npx create-react-native-app -t with-typescript
-```
+<p align='center'>
 
-TypeScript is a superset of JavaScript which gives you static types and powerful tooling in Visual Studio Code including autocompletion and useful inline warnings for type errors.
+</p>
 
-## 🚀 How to use
+## Install
 
-#### Creating a new project
+    $ git clone https://github.com/ORG/PROJECT.git
+    $ cd PROJECT
+    $ npm install
 
-- Install the CLI: `npm i -g expo-cli`
-- Create a project: `expo init --template expo-template-blank-typescript`
-- `cd` into the project
+## Start & watch
 
-### Adding TypeScript to existing projects
+    $ npm start
 
-- Create a blank TypeScript config: `touch tsconfig.json`
-- Run `expo start` to automatically configure TypeScript
-- Rename files to TypeScript, `.tsx` for React components and `.ts` for plain typescript files
+## Languages & tools
 
-## 📝 Notes
-
-- [Expo TypeScript guide](https://docs.expo.io/versions/latest/guides/typescript/)
+- [Expo](https://expo.io/) The fastest way to build an app.
+- [Eslint](https://eslint.org/) is used to prevent JavaScript error.
+- [Prettier](https://prettier.io/docs/en/index.html) is an opinionated code formatter.
+- [React Native](https://reactnative.dev/) React Native combines the best parts of native development with React, a best-in-class JavaScript library for building user interfaces.
+- [Typecript](https://www.typescriptlang.org/) TypeScript extends JavaScript by adding types.
