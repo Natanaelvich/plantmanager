@@ -1,14 +1,9 @@
 import React from 'react';
 import { Text, View } from 'react-native';
-
-// import { Container } from './styles';
+import Welcome from './screens/Welcome';
 
 const Main: React.FC = () => {
-  return (
-    <View>
-      <Text>Hello word</Text>
-    </View>
-  );
+  return <Welcome />;
 };
 
 export default Main;
