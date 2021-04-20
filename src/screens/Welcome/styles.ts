@@ -1,9 +1,9 @@
 import { StyleSheet } from 'react-native';
+import colors from '../../styles/colors';
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#f5f5f5',
     alignItems: 'center',
     paddingTop: 40,
     paddingBottom: 40,
@@ -16,11 +16,13 @@ const styles = StyleSheet.create({
 
     textAlign: 'center',
 
-    color: '#52665A',
+    color: colors.heading,
     maxWidth: 222,
   },
   image: {
     marginTop: 12,
+    width: 292,
+    height: 284,
   },
   description: {
     marginTop: 12,
@@ -30,12 +32,12 @@ const styles = StyleSheet.create({
     lineHeight: 25,
 
     textAlign: 'center',
-    color: '#5C6660',
+    color: colors.heading,
     maxWidth: 288,
   },
   buttonNext: {
     marginTop: 'auto',
-    backgroundColor: '#32B768',
+    backgroundColor: colors.green,
     borderRadius: 16,
     width: 56,
     height: 56,
