@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import EnviromentButton from '../../components/EnviromentButton';
 import Header from '../../components/Header';
+import Load from '../../components/Load';
 import PlantCardPrimary from '../../components/PlantCardPrimary';
 import api from '../../services/api';
 import {
@@ -37,6 +38,7 @@ const PlantSelect: React.FC = () => {
   const [plants, setPlants] = useState<PlantProps[]>([]);
   const [filteredPlants, setFilteredPlants] = useState<PlantProps[]>([]);
   const [environmentSelected, setEnvironmentSelected] = useState('all');
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     async function fetchEnviroment(): Promise<void> {
@@ -59,6 +61,8 @@ const PlantSelect: React.FC = () => {
     async function fetchPlants(): Promise<void> {
       const { data } = await api.get('plants?_sort=name&_order=asc');
       setPlants(data);
+      setFilteredPlants(data);
+      setLoading(false);
     }
 
     fetchPlants();
@@ -72,6 +76,8 @@ const PlantSelect: React.FC = () => {
     const filtered = plants.filter(plant => plant.environments.includes(key));
     setFilteredPlants(filtered);
   }
+
+  if (loading) return <Load />;
 
   return (
     <Container>
