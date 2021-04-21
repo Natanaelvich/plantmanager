@@ -1,9 +1,16 @@
 import React from 'react';
+import { useNavigation } from '@react-navigation/native';
+
 import Button from '../../components/Button';
 
 import { Container, Content, Emoji, Title, Subtitle, Footer } from './styles';
 
 const Confirmation: React.FC = () => {
+  const { navigate } = useNavigation();
+
+  function handleMoveOn(): void {
+    navigate('PlantSelect');
+  }
   return (
     <Container>
       <Content>
@@ -16,7 +23,7 @@ const Confirmation: React.FC = () => {
         </Subtitle>
 
         <Footer>
-          <Button title="Começar" />
+          <Button title="Começar" onPress={handleMoveOn} />
         </Footer>
       </Content>
     </Container>
