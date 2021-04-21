@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import EnviromentButton from '../../components/EnviromentButton';
 import Header from '../../components/Header';
+import PlantCardPrimary from '../../components/PlantCardPrimary';
 import api from '../../services/api';
 import {
   Container,
@@ -9,6 +10,8 @@ import {
   Subtitle,
   FlatListContainer,
   ListItem,
+  FlatListContainerPlants,
+  ListPlants,
 } from './styles';
 
 export interface EnviromentProps {
@@ -16,12 +19,28 @@ export interface EnviromentProps {
   title: string;
 }
 
+export interface PlantProps {
+  id: string;
+  name: string;
+  about: string;
+  water_tips: string;
+  photo: string;
+  environments: string[];
+  frequency: {
+    times: number;
+    repeat_every: string;
+  };
+}
+
 const PlantSelect: React.FC = () => {
   const [enviroments, setEnviroments] = useState<EnviromentProps[]>([]);
+  const [plants, setPlants] = useState<PlantProps[]>([]);
 
   useEffect(() => {
     async function fetchEnviroment(): Promise<void> {
-      const { data } = await api.get('plants_environments');
+      const { data } = await api.get(
+        'plants_environments?_sort=title&_order=asc',
+      );
       setEnviroments([
         {
           key: 'all',
@@ -33,6 +52,16 @@ const PlantSelect: React.FC = () => {
 
     fetchEnviroment();
   }, []);
+
+  useEffect(() => {
+    async function fetchPlants(): Promise<void> {
+      const { data } = await api.get('plants?_sort=name&_order=asc');
+      setPlants(data);
+    }
+
+    fetchPlants();
+  }, []);
+
   return (
     <Container>
       <HeaderContent>
@@ -50,6 +79,15 @@ const PlantSelect: React.FC = () => {
           showsHorizontalScrollIndicator={false}
         />
       </FlatListContainer>
+
+      <FlatListContainerPlants>
+        <ListPlants
+          data={plants}
+          renderItem={({ item }) => <PlantCardPrimary data={item} />}
+          showsVerticalScrollIndicator={false}
+          numColumns={2}
+        />
+      </FlatListContainerPlants>
     </Container>
   );
 };

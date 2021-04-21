@@ -3,6 +3,7 @@ import { FlatList } from 'react-native';
 import styled from 'styled-components/native';
 import colors from '../../styles/colors';
 import fonts from '../../styles/fonts';
+import { PlantProps as IPlantProps } from './index';
 
 import { EnviromentProps as IEnviromentProps } from './index';
 
@@ -39,7 +40,22 @@ export const ListItem = styled(
     height: 40,
     justifyContent: 'center',
     paddingBottom: 5,
-    marginLeft: 32,
+    paddingLeft: 32,
+    paddingRight: 32,
     marginVertical: 32,
+    marginHorizontal: 5,
+  },
+})``;
+export const FlatListContainerPlants = styled.View`
+  flex: 1;
+  padding: 0 32px;
+  justify-content: center;
+`;
+
+export const ListPlants = styled(
+  FlatList as new () => FlatList<IPlantProps>,
+).attrs({
+  contentContainerStyle: {
+    paddingBottom: 32,
   },
 })``;
