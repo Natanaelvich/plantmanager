@@ -1,6 +1,7 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import EnviromentButton from '../../components/EnviromentButton';
 import Header from '../../components/Header';
+import api from '../../services/api';
 import {
   Container,
   HeaderContent,
@@ -10,7 +11,28 @@ import {
   ListItem,
 } from './styles';
 
+export interface EnviromentProps {
+  key: string;
+  title: string;
+}
+
 const PlantSelect: React.FC = () => {
+  const [enviroments, setEnviroments] = useState<EnviromentProps[]>([]);
+
+  useEffect(() => {
+    async function fetchEnviroment(): Promise<void> {
+      const { data } = await api.get('plants_environments');
+      setEnviroments([
+        {
+          key: 'all',
+          title: 'Todos',
+        },
+        ...data,
+      ]);
+    }
+
+    fetchEnviroment();
+  }, []);
   return (
     <Container>
       <HeaderContent>
@@ -22,8 +44,8 @@ const PlantSelect: React.FC = () => {
 
       <FlatListContainer>
         <ListItem
-          data={[1, 2, 3, 4, 5]}
-          renderItem={({ item }) => <EnviromentButton title="Cozinha" />}
+          data={enviroments}
+          renderItem={({ item }) => <EnviromentButton title={item.title} />}
           horizontal
           showsHorizontalScrollIndicator={false}
         />
