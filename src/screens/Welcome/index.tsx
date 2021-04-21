@@ -1,24 +1,42 @@
 import React from 'react';
-import { Image, Text, TouchableOpacity, View } from 'react-native';
-import { SimpleLineIcons } from '@expo/vector-icons';
 
-import watering from '../../assets/watering.png';
-import styles from './styles';
+import { useNavigation } from '@react-navigation/native';
+import {
+  Container,
+  Wrapper,
+  WelcomeImage,
+  Title,
+  Subtitle,
+  NextButton,
+  NextButtonIcon,
+} from './styles';
+
+import wateringImg from '../../assets/watering.png';
 
 const Welcome: React.FC = () => {
-  return (
-    <View style={styles.container}>
-      <Text style={styles.title}>Gerencie suas plantas de forma fácil</Text>
-      <Image style={styles.image} source={watering} />
-      <Text style={styles.description}>
-        Não esqueça mais de regar suas plantas. Nós cuidamos de lembrar você
-        sempre que precisar.
-      </Text>
+  const navigation = useNavigation();
 
-      <TouchableOpacity style={styles.buttonNext}>
-        <SimpleLineIcons name="arrow-right" size={16} color="white" />
-      </TouchableOpacity>
-    </View>
+  const handleStart = (): void => {
+    navigation.navigate('UserIdentification');
+  };
+
+  return (
+    <Container>
+      <Wrapper>
+        <Title>
+          Gerencie {'\n'} suas plantas de {'\n'} forma fácil
+        </Title>
+        <WelcomeImage source={wateringImg} />
+        <Subtitle>
+          Não esqueça mais de regar suas plantas. Nós cuidamos de lembrar você
+          sempre que precisar.
+        </Subtitle>
+
+        <NextButton onPress={handleStart}>
+          <NextButtonIcon />
+        </NextButton>
+      </Wrapper>
+    </Container>
   );
 };
 
