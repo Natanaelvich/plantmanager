@@ -1,7 +1,7 @@
 import React from 'react';
 import LottieView from 'lottie-react-native';
 
-import loadAnimation from '../../assets/load.json';
+import loadAnimation from '../../assets/load-plant.json';
 
 import { Container } from './styles';
 
