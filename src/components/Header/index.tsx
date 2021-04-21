@@ -7,10 +7,10 @@ const Header: React.FC = () => {
     <Container>
       <Content>
         <Greeting>Olá,</Greeting>
-        <UserName>Vinícius</UserName>
+        <UserName>Natanael</UserName>
       </Content>
 
-      <Avatar source={{ uri: 'https://github.com/viniciusmendite.png' }} />
+      <Avatar source={{ uri: 'https://github.com/Natanaelvich.png' }} />
     </Container>
   );
 };
