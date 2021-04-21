@@ -1,9 +1,21 @@
 import React from 'react';
-import { Text, View } from 'react-native';
-import Welcome from './screens/Welcome';
+import {
+  useFonts,
+  Jost_400Regular,
+  Jost_600SemiBold,
+} from '@expo-google-fonts/jost';
+import AppLoading from 'expo-app-loading';
+import Routes from './routes';
 
 const Main: React.FC = () => {
-  return <Welcome />;
+  const [fontsLoaded] = useFonts({
+    Jost_400Regular,
+    Jost_600SemiBold,
+  });
+
+  if (!fontsLoaded) return <AppLoading />;
+
+  return <Routes />;
 };
 
 export default Main;
