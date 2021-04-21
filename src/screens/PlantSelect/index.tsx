@@ -35,6 +35,8 @@ export interface PlantProps {
 const PlantSelect: React.FC = () => {
   const [enviroments, setEnviroments] = useState<EnviromentProps[]>([]);
   const [plants, setPlants] = useState<PlantProps[]>([]);
+  const [filteredPlants, setFilteredPlants] = useState<PlantProps[]>([]);
+  const [environmentSelected, setEnvironmentSelected] = useState('all');
 
   useEffect(() => {
     async function fetchEnviroment(): Promise<void> {
@@ -62,6 +64,15 @@ const PlantSelect: React.FC = () => {
     fetchPlants();
   }, []);
 
+  function handleEnvironmentSelected(key: string): void {
+    setEnvironmentSelected(key);
+
+    if (key === 'all') return setFilteredPlants(plants);
+
+    const filtered = plants.filter(plant => plant.environments.includes(key));
+    setFilteredPlants(filtered);
+  }
+
   return (
     <Container>
       <HeaderContent>
@@ -74,7 +85,13 @@ const PlantSelect: React.FC = () => {
       <FlatListContainer>
         <ListItem
           data={enviroments}
-          renderItem={({ item }) => <EnviromentButton title={item.title} />}
+          renderItem={({ item }) => (
+            <EnviromentButton
+              title={item.title}
+              active={item.key === environmentSelected}
+              onPress={() => handleEnvironmentSelected(item.key)}
+            />
+          )}
           horizontal
           showsHorizontalScrollIndicator={false}
         />
@@ -82,7 +99,7 @@ const PlantSelect: React.FC = () => {
 
       <FlatListContainerPlants>
         <ListPlants
-          data={plants}
+          data={filteredPlants}
           renderItem={({ item }) => <PlantCardPrimary data={item} />}
           showsVerticalScrollIndicator={false}
           numColumns={2}
