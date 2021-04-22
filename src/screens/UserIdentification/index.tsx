@@ -28,9 +28,12 @@ const UserIdentification: React.FC = () => {
   const handleSubmit = async (): Promise<void> => {
     if (!username) return Alert.alert('Ops...', 'Me diz como chamar você 😢');
 
-    await AsyncStorage.setItem('@plantmanager:user', username);
-
-    navigation.navigate('Confirmation');
+    try {
+      await AsyncStorage.setItem('@plantmanager:user', username);
+      navigation.navigate('Confirmation');
+    } catch {
+      Alert.alert('Ops...', 'Não foi possível salvar o seu nome. 😢');
+    }
   };
 
   const [isFocused, setIsFocused] = useState(false);
