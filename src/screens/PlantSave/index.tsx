@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Platform, Alert } from 'react-native';
-import { useRoute } from '@react-navigation/native';
+import { useNavigation, useRoute } from '@react-navigation/native';
 import { SvgFromUri } from 'react-native-svg';
 import DateTimePicker, { Event } from '@react-native-community/datetimepicker';
 import { isBefore, format } from 'date-fns';
@@ -39,6 +39,7 @@ interface Params {
 }
 
 const PlantSave: React.FC = () => {
+  const { navigate } = useNavigation();
   const route = useRoute();
   const { plant } = route.params as Params;
 
@@ -50,6 +51,15 @@ const PlantSave: React.FC = () => {
       await savePlant({
         ...plant,
         dateTimeNotification: selectedDateTime,
+      });
+
+      navigate('Confirmation', {
+        title: 'Tudo certo',
+        subtitle:
+          'Fique tranquilo que sempre vamos lembrar você de cuidar das suas plantinhas com muito cuidado.',
+        buttonTitle: 'Muito Obrigado :D',
+        icon: 'hug',
+        nextScreen: 'MyPlants',
       });
     } catch {
       Alert.alert('Não foi possível salvar! 😢');
