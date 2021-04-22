@@ -23,14 +23,21 @@ import {
 } from './styles';
 
 const UserIdentification: React.FC = () => {
-  const navigation = useNavigation();
+  const { navigate } = useNavigation();
 
   const handleSubmit = async (): Promise<void> => {
     if (!username) return Alert.alert('Ops...', 'Me diz como chamar você 😢');
 
     try {
       await AsyncStorage.setItem('@plantmanager:user', username);
-      navigation.navigate('Confirmation');
+      navigate('Confirmation', {
+        title: 'Prontinho',
+        subtitle:
+          'Agora vamos começar a cuidar das suas plantinhas com muito cuidado.',
+        buttonTitle: 'Começar',
+        icon: 'smile',
+        nextScreen: 'PlantSelect',
+      });
     } catch {
       Alert.alert('Ops...', 'Não foi possível salvar o seu nome. 😢');
     }
