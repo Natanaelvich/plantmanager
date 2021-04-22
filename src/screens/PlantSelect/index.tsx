@@ -1,3 +1,4 @@
+import { useNavigation } from '@react-navigation/native';
 import React, { useCallback, useEffect, useState } from 'react';
 import { ActivityIndicator } from 'react-native';
 import EnviromentButton from '../../components/EnviromentButton';
@@ -36,6 +37,8 @@ export interface PlantProps {
 }
 
 const PlantSelect: React.FC = () => {
+  const { navigate } = useNavigation();
+
   const [enviroments, setEnviroments] = useState<EnviromentProps[]>([]);
   const [plants, setPlants] = useState<PlantProps[]>([]);
   const [filteredPlants, setFilteredPlants] = useState<PlantProps[]>([]);
@@ -101,6 +104,10 @@ const PlantSelect: React.FC = () => {
     fetchPlants();
   }
 
+  function handlePlantSelect(plant: PlantProps): void {
+    navigate('PlantSave', { plant });
+  }
+
   if (loading) return <Load />;
 
   return (
@@ -132,7 +139,12 @@ const PlantSelect: React.FC = () => {
         <ListPlants
           data={filteredPlants}
           keyExtractor={(item: PlantProps) => String(item.id)}
-          renderItem={({ item }) => <PlantCardPrimary data={item} />}
+          renderItem={({ item }) => (
+            <PlantCardPrimary
+              data={item}
+              onPress={() => handlePlantSelect(item)}
+            />
+          )}
           showsVerticalScrollIndicator={false}
           numColumns={2}
           onEndReachedThreshold={0.1}
