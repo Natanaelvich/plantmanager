@@ -21,6 +21,7 @@ import {
 
 import waterDrop from '../../assets/waterdrop.png';
 import Button from '../../components/Button';
+import { savePlant } from '../../libs/storage';
 
 interface Params {
   plant: {
@@ -43,6 +44,17 @@ const PlantSave: React.FC = () => {
 
   const [selectedDateTime, setSelectedDateTime] = useState(new Date());
   const [showDatePicker, setShowDatePicker] = useState(Platform.OS === 'ios');
+
+  async function handleSave(): Promise<void> {
+    try {
+      await savePlant({
+        ...plant,
+        dateTimeNotification: selectedDateTime,
+      });
+    } catch {
+      Alert.alert('Não foi possível salvar! 😢');
+    }
+  }
 
   function handleChangeTime(event: Event, dateTime: Date | undefined): void {
     if (Platform.OS === 'android') {
@@ -95,7 +107,12 @@ const PlantSave: React.FC = () => {
           </DateTimePickerButton>
         )}
 
-        <Button title="Cadastrar planta" onPress={() => {}} />
+        <Button
+          title="Cadastrar planta"
+          onPress={() => {
+            handleSave;
+          }}
+        />
       </Controller>
     </Container>
   );
