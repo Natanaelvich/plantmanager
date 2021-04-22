@@ -20,7 +20,9 @@
     "axios": "^0.21.1",
     "react-native-svg": "12.1.0",
     "lottie-react-native": "~2.6.1",
-    "@react-native-async-storage/async-storage": "^1.13.0"
+    "@react-native-async-storage/async-storage": "^1.13.0",
+    "@react-native-community/datetimepicker": "^3.4.6",
+    "date-fns": "^2.21.1"
   },
   "devDependencies": {
     "@babel/core": "~7.9.0",
