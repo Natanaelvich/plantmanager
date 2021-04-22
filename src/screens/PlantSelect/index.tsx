@@ -43,7 +43,6 @@ const PlantSelect: React.FC = () => {
   const [loading, setLoading] = useState(true);
   const [page, setPage] = useState(1);
   const [loadingMore, setLoadingMore] = useState(false);
-  const [loadedAll, setLoadedAll] = useState(false);
 
   const fetchPlants = useCallback(async () => {
     const { data } = await api.get(
@@ -116,6 +115,7 @@ const PlantSelect: React.FC = () => {
       <FlatListContainer>
         <ListItem
           data={enviroments}
+          keyExtractor={(item: EnviromentProps) => String(item.key)}
           renderItem={({ item }) => (
             <EnviromentButton
               title={item.title}
@@ -131,6 +131,7 @@ const PlantSelect: React.FC = () => {
       <FlatListContainerPlants>
         <ListPlants
           data={filteredPlants}
+          keyExtractor={(item: PlantProps) => String(item.id)}
           renderItem={({ item }) => <PlantCardPrimary data={item} />}
           showsVerticalScrollIndicator={false}
           numColumns={2}
