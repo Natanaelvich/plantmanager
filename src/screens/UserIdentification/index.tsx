@@ -1,6 +1,13 @@
 import React, { useState } from 'react';
-import { Platform, TouchableWithoutFeedback, Keyboard } from 'react-native';
+import {
+  Platform,
+  TouchableWithoutFeedback,
+  Keyboard,
+  Alert,
+} from 'react-native';
 import { useNavigation } from '@react-navigation/native';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+
 import Button from '../../components/Button';
 
 import {
@@ -18,7 +25,11 @@ import {
 const UserIdentification: React.FC = () => {
   const navigation = useNavigation();
 
-  const handleSubmit = (): void => {
+  const handleSubmit = async (): Promise<void> => {
+    if (!username) return Alert.alert('Ops...', 'Me diz como chamar você 😢');
+
+    await AsyncStorage.setItem('@plantmanager:user', username);
+
     navigation.navigate('Confirmation');
   };
 
