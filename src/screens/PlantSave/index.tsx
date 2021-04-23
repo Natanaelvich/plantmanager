@@ -120,7 +120,7 @@ const PlantSave: React.FC = () => {
         <Button
           title="Cadastrar planta"
           onPress={() => {
-            handleSave;
+            handleSave();
           }}
         />
       </Controller>
