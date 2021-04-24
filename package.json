@@ -23,14 +23,15 @@
     "@react-native-async-storage/async-storage": "^1.13.0",
     "@react-native-community/datetimepicker": "^3.4.6",
     "date-fns": "^2.21.1",
-    "@react-navigation/bottom-tabs": "^5.11.10"
+    "@react-navigation/bottom-tabs": "^5.11.10",
+    "expo-notifications": "~0.8.2"
   },
   "devDependencies": {
     "@babel/core": "~7.9.0",
     "@types/react": "~16.9.35",
     "@types/react-native": "~0.63.2",
-    "typescript": "~4.0.0",
     "@types/styled-components": "^5.1.3",
+    "@types/styled-components-react-native": "^5.1.1",
     "@typescript-eslint/eslint-plugin": "^4.1.0",
     "@typescript-eslint/parser": "^4.1.0",
     "eslint": "6.8.0",
@@ -42,8 +43,9 @@
     "eslint-plugin-prettier": "^3.1.4",
     "eslint-plugin-react": "^7.19.0",
     "eslint-plugin-react-hooks": "^2.5.0",
+    "json-server": "^0.16.3",
     "prettier": "^2.1.1",
-    "json-server": "^0.16.3"
+    "typescript": "~4.0.0"
   },
   "scripts": {
     "start": "expo start",
