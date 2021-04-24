@@ -37,3 +37,16 @@ export const Time = styled.Text`
   font-family: ${fonts.heading};
   color: ${colors.body_dark};
 `;
+
+export const ButtonRemove = styled.TouchableOpacity`
+  width: 100px;
+  height: 85px;
+  background-color: ${colors.red};
+  margin-top: 15px;
+  border-radius: 20px;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  right: 20px;
+  padding-left: 15px;
+`;
