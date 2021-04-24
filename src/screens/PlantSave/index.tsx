@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Platform, Alert } from 'react-native';
+import { Platform, Alert, ScrollView } from 'react-native';
 import { useNavigation, useRoute } from '@react-navigation/native';
 import { SvgFromUri } from 'react-native-svg';
 import DateTimePicker, { Event } from '@react-native-community/datetimepicker';
@@ -30,6 +30,7 @@ interface Params {
     about: string;
     water_tips: string;
     photo: string;
+    hour: string;
     environments: string[];
     frequency: {
       times: number;
@@ -84,47 +85,49 @@ const PlantSave: React.FC = () => {
   }
 
   return (
-    <Container>
-      <PlantInfo>
-        <SvgFromUri uri={plant.photo} height={150} width={150} />
+    <ScrollView>
+      <Container>
+        <PlantInfo>
+          <SvgFromUri uri={plant.photo} height={150} width={150} />
 
-        <PlantName>{plant.name}</PlantName>
-        <Description>{plant.about}</Description>
-      </PlantInfo>
+          <PlantName>{plant.name}</PlantName>
+          <Description>{plant.about}</Description>
+        </PlantInfo>
 
-      <Controller>
-        <TipContainer>
-          <Image source={waterDrop} />
-          <TipText>{plant.water_tips}</TipText>
-        </TipContainer>
+        <Controller>
+          <TipContainer>
+            <Image source={waterDrop} />
+            <TipText>{plant.water_tips}</TipText>
+          </TipContainer>
 
-        <AlertLabel>Escolha o melhor horário para ser lembrado:</AlertLabel>
+          <AlertLabel>Escolha o melhor horário para ser lembrado:</AlertLabel>
 
-        {showDatePicker && (
-          <DateTimePicker
-            value={selectedDateTime}
-            mode="time"
-            display="spinner"
-            onChange={handleChangeTime}
+          {showDatePicker && (
+            <DateTimePicker
+              value={selectedDateTime}
+              mode="time"
+              display="spinner"
+              onChange={handleChangeTime}
+            />
+          )}
+
+          {Platform.OS === 'android' && (
+            <DateTimePickerButton onPress={handleOpenDateTimePickerForAndroid}>
+              <DateTimePickerText>
+                {`Mudar ${format(selectedDateTime, 'HH:mm')}`}
+              </DateTimePickerText>
+            </DateTimePickerButton>
+          )}
+
+          <Button
+            title="Cadastrar planta"
+            onPress={() => {
+              handleSave();
+            }}
           />
-        )}
-
-        {Platform.OS === 'android' && (
-          <DateTimePickerButton onPress={handleOpenDateTimePickerForAndroid}>
-            <DateTimePickerText>
-              {`Mudar ${format(selectedDateTime, 'HH:mm')}`}
-            </DateTimePickerText>
-          </DateTimePickerButton>
-        )}
-
-        <Button
-          title="Cadastrar planta"
-          onPress={() => {
-            handleSave();
-          }}
-        />
-      </Controller>
-    </Container>
+        </Controller>
+      </Container>
+    </ScrollView>
   );
 };
 
