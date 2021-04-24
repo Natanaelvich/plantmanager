@@ -47,5 +47,3 @@ export const PlantsTitle = styled.Text`
 `;
 
 export const ListPlants = styled(FlatList as new () => FlatList<IPlantProps>)``;
-
-export const PlantText = styled.Text``;
